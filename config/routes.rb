@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/profile', to: 'users#profile'
+  resources :user_routines, only: [:index, :create, :update, :destroy]
 end
