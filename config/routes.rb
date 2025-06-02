@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#profile'
   resources :user_routines, only: [:index, :create, :update, :destroy]
   resources :tasks, only: [:index, :create, :update, :destroy]
+  resources :categories, only: [:create, :update, :destroy]
 end
