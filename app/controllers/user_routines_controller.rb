@@ -6,6 +6,15 @@ class UserRoutinesController < ApplicationController
     render json: @user_routines, status: :ok
   end
 
+  def show
+    @user_routine = current_user.user_routines.find(params[:id])
+    if @user_routine
+      render json: @user_routine.as_json(include: :task_routines), status: :ok
+    else
+      render json: { error: 'Routine not found' }, status: :not_found
+    end
+  end
+
   def create
     @user_routine = current_user.user_routines.new(user_routine_params)
     if @user_routine.save
