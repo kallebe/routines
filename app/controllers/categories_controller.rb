@@ -1,6 +1,11 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @categories = current_user.categories
+    render json: @categories, status: :ok
+  end
+
   def create
     @category = current_user.categories.new(category_params)
     if @category.save
