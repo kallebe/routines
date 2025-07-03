@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   resources :user_routines, only: [:index, :create, :show, :update, :destroy]
   resources :tasks, only: [:index, :create, :update, :destroy]
   resources :task_routines, only: [:create, :update, :destroy]
-  resources :categories, only: [:create, :update, :destroy]
+  resources :categories, only: [:index, :create, :update, :destroy]
 end
