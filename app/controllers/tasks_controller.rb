@@ -2,8 +2,8 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = current_user.tasks
-    render json: @tasks, status: :ok
+    @tasks = current_user.tasks.includes(:category)
+    render json: @tasks.as_json(include: :category), status: :ok
   end
 
   def create
