@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = current_user.tasks.includes(:category)
+    @tasks = current_user.tasks.includes(:category).joins(:category).order('categories.title ASC, tasks.title ASC')
     render json: @tasks.as_json(include: :category), status: :ok
   end
 
