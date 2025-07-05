@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
     if @category.save
       render json: @category, status: :created
     else
-      render json: @category.errors, status: :unprocessable_entity
+      render json: @category.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       render json: @category, status: :ok
     else
-      render json: @category.errors, status: :unprocessable_entity
+      render json: @category.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
     if @category.destroy
       render json: { message: 'Category deleted successfully' }, status: :ok
     else
-      render json: @category.errors, status: :unprocessable_entity
+      render json: @category.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 

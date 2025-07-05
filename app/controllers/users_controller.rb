@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user, status: :ok
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.destroy
       render json: { message: 'User deleted successfully' }, status: :ok
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 

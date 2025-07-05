@@ -6,7 +6,7 @@ class TaskRoutinesController < ApplicationController
     if @task_routine.save
       render json: @task_routine, status: :created
     else
-      render json: @task_routine.errors, status: :unprocessable_entity
+      render json: @task_routine.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -14,7 +14,7 @@ class TaskRoutinesController < ApplicationController
     if @task_routine.update(task_routine_params)
       render json: @task_routine
     else
-      render json: @task_routine.errors, status: :unprocessable_entity
+      render json: @task_routine.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -22,7 +22,7 @@ class TaskRoutinesController < ApplicationController
     if @task_routine.destroy
       render json: { message: 'Task routine deleted successfully' }, status: :ok
     else
-      render json: @task_routine.errors, status: :unprocessable_entity
+      render json: @task_routine.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 

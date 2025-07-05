@@ -20,7 +20,7 @@ class UserRoutinesController < ApplicationController
     if @user_routine.save
       render json: @user_routine, status: :created
     else
-      render json: @user_routine.errors, status: :unprocessable_entity
+      render json: @user_routine.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class UserRoutinesController < ApplicationController
     if @user_routine.update(user_routine_params)
       render json: @user_routine, status: :ok
     else
-      render json: @user_routine.errors, status: :unprocessable_entity
+      render json: @user_routine.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
@@ -38,7 +38,7 @@ class UserRoutinesController < ApplicationController
     if @user_routine.destroy
       render json: { message: 'Routine deleted successfully' }, status: :ok
     else
-      render json: @user_routine.errors, status: :unprocessable_entity
+      render json: @user_routine.errors.full_messages.join(', '), status: :unprocessable_entity
     end
   end
 
