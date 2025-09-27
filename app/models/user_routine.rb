@@ -4,4 +4,6 @@ class UserRoutine < ApplicationRecord
   has_many :tasks, through: :task_routines
 
   validates_presence_of :title, :days_of_week
+
+  accepts_nested_attributes_for :task_routines
 end

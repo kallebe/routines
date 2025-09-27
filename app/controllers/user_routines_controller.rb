@@ -45,6 +45,6 @@ class UserRoutinesController < ApplicationController
   private
 
   def user_routine_params
-    params.require(:user_routine).permit(:title, :days_of_week)
+    params.require(:user_routine).permit(:title, :days_of_week, task_routines_attributes: [:start, :end, :task_id])
   end
 end
